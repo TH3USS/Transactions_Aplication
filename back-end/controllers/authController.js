@@ -7,22 +7,22 @@ const register = async (req, res) => {
   const { name, email, password, role } = req.body;
 
   const userExists = await User.findOne({ where: { email } });
-  if (userExists) return res.status(400).json({ error: 'Usuário já existe' });
+  if (userExists) return res.status(400).json({ error: 'User already exists' });
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.create({ name, email, password: hashedPassword, role });
 
-  res.status(201).json({ message: 'Usuário registrado com sucesso' });
+  res.status(201).json({ message: 'User registered successfully' });
 };
 
 const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ where: { email } });
 
-  if (!user) return res.status(400).json({ error: 'Credenciais inválidas' });
+  if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
   const isPasswordValid = await bcrypt.compare(password, user.password);
-  if (!isPasswordValid) return res.status(400).json({ error: 'Credenciais inválidas' });
+  if (!isPasswordValid) return res.status(400).json({ error: 'Invalid credentials' });
 
   const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
     expiresIn: '1d',

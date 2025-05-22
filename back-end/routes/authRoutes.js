@@ -7,13 +7,12 @@ const router = express.Router();
 router.post('/register', register);
 router.post('/login', login);
 
-// Exemplo de rota protegida
 router.get('/admin-only', authenticate, authorize(['admin']), (req, res) => {
-  res.json({ message: 'Bem-vindo, admin!' });
+  res.json({ message: 'Welcome, admin!' });
 });
 
 router.get('/user-only', authenticate, authorize(['user']), (req, res) => {
-  res.json({ message: 'Bem-vindo, usuário comum!' });
+  res.json({ message: 'Welcome, regular user!' });
 });
 
 module.exports = router;

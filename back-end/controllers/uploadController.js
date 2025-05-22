@@ -5,7 +5,7 @@ const Transaction = db.Transaction;
 
 const uploadPlanilha = async (req, res) => {
   try {
-    if (!req.file) return res.status(400).json({ error: 'Arquivo não enviado' });
+    if (!req.file) return res.status(400).json({ error: 'File not sent' });
 
     const workbook = XLSX.readFile(req.file.path);
     const sheetName = workbook.SheetNames[0];
@@ -21,14 +21,14 @@ const uploadPlanilha = async (req, res) => {
     }));
 
     if (!rows.length) {
-      return res.status(400).json({ error: 'A planilha está vazia ou mal formatada' });
+      return res.status(400).json({ error: 'The spreadsheet is empty or poorly formatted' });
     }
 
     await Transaction.bulkCreate(transactions);
-    res.status(201).json({ message: 'Transações salvas com sucesso' });
+    res.status(201).json({ message: 'Transactions saved successfully' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Erro ao processar planilha' });
+    res.status(500).json({ error: 'Error processing spreadsheet' });
   }
 };
 

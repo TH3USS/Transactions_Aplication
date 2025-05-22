@@ -4,7 +4,7 @@ require('dotenv').config();
 const authenticate = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  if (!authHeader) return res.status(401).json({ error: 'Token não fornecido' });
+  if (!authHeader) return res.status(401).json({ error: 'Token not provided' });
 
   const token = authHeader.split(' ')[1];
 
@@ -13,13 +13,13 @@ const authenticate = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    return res.status(403).json({ error: 'Token inválido' });
+    return res.status(403).json({ error: 'Invalid token' });
   }
 };
 
 const authorize = (roles) => (req, res, next) => {
   if (!roles.includes(req.user.role)) {
-    return res.status(403).json({ error: 'Acesso negado' });
+    return res.status(403).json({ error: 'Access denied' });
   }
   next();
 };
