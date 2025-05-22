@@ -11,6 +11,9 @@ const uploadPlanilha = async (req, res) => {
     const sheetName = workbook.SheetNames[0];
     const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
+    for (const row of rows) {
+      const user = await User.findOne({ where: { cpf: String(row['CPF']) } });
+      
     const transactions = rows.map(row => ({
       cpf: String(row['cpf']),
       description: row['description'],
@@ -18,6 +21,7 @@ const uploadPlanilha = async (req, res) => {
       points: parseFloat(String(row['points']).replace(/[.,]/g, '')),
       value: parseFloat(String(row['value']).replace('.', '').replace(',', '.')),
       status: row['status'],
+      userId: user ? user.id : null
     }));
 
     if (!rows.length) {

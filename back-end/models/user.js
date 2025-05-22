@@ -4,6 +4,10 @@ const database = require('../config/db');
 
 const User = database.define('User', {
     name: Sequelize.STRING,
+    cpf: {
+        type: Sequelize.STRING,
+        unique: true
+    },
     email: {
         type: Sequelize.STRING,
         unique: true

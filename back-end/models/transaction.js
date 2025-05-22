@@ -41,7 +41,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    userId: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'Users',
+      key: 'id'
+    }
+    }
   });
+
+  Transaction.belongsTo(User);
 
   return Transaction;
 };

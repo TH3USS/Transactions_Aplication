@@ -57,6 +57,10 @@ module.exports = {
 //         autoIncrement: true
 //       },
 //       name: Sequelize.STRING,
+//       cpf: {
+//         type: Sequelize.STRING,
+//         unique: true
+//       },
 //       email: {
 //         type: Sequelize.STRING,
 //         unique: true
