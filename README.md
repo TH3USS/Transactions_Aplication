@@ -10,40 +10,9 @@ Esse projeto consiste em um sistema para upload e processamento de planilhas Exc
 
 O backend foi desenvolvido em Node.js utilizando Express para criação da API e Sequelize para ORM com banco de dados relacional.
 
-<pre>
-├── Back-End
-│   ├── controllers/
-│   │   └── uploadController.js       # Controlador para upload e processamento das planilhas
-│   ├── models/
-│   │   ├── user.js                   # Modelo do usuário
-│   │   └── transaction.js            # Modelo de transação
-│   ├── routes/
-│   │   └── index.js                  # Rotas da API
-│   ├── middleware/
-│   │   └── auth.js                   # Middleware de autenticação
-│   ├── config/
-│   │   └── database.js               # Configuração do Sequelize e banco de dados
-│   ├── app.js                        # Arquivo principal da API
-│   └── package.json                  # Dependências do projeto
-</pre>
-
 ### Frontend
 
 O frontend foi desenvolvido em React, consumindo as APIs do backend para exibir dados e permitir interações do usuário.
-
-<pre>
-├── Front-End
-│   ├── src/
-│   │   ├── components/
-│   │   │   └── UploadForm.jsx        # Componente para upload de planilhas
-│   │   ├── pages/
-│   │   │   └── Wallet.jsx            # Página da carteira de pontos
-│   │   ├── App.jsx                   # Componente principal
-│   │   ├── index.js                  # Entrada do React
-│   │   └── styles/
-│   │       └── main.css              # Arquivo de estilos
-│   ├── package.json                  # Dependências do frontend
-</pre>
 
 ---
 
