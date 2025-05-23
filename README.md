@@ -4,8 +4,6 @@ Esse projeto consiste em um sistema para upload e processamento de planilhas Exc
 
 ## **Estrutura do Projeto**
 
-> A seguir é apresentada a organização da estrutura utilizada no projeto, mostrando a disposição dos principais scripts e arquivos:
-
 ### Backend
 
 O backend foi desenvolvido em Node.js utilizando Express para criação da API e Sequelize para ORM com banco de dados relacional.
