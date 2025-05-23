@@ -28,7 +28,7 @@ export default function Upload() {
     <form onSubmit={handleUpload}>
       <input type="file" onChange={e => setFile(e.target.files[0])} />
       <button type="submit">Enviar planilha</button>
-      {message && <p>{message}</p>}
+      {message && <p style={{ color: "green" }}>{message}</p>}
     </form>
   );
 }

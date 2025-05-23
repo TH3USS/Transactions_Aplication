@@ -21,10 +21,11 @@ export default function Login() {
       if (user.role === "admin") {
         navigate("/admin");
       } else {
-        navigate("/wallet");
+        navigate("/extract");
       }
-    } catch (err) {
-      setError("Login falhou. Verifique CPF e senha.");
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Login failed. Check CPF and password.");
     }
   };
 

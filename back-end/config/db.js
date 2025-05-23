@@ -1,4 +1,3 @@
-// configuração do banco de dados
 const Sequelize = require('sequelize');
 require('dotenv').config();
 

@@ -24,7 +24,7 @@ export default function Wallet() {
   if (loading) return <p>Carregando...</p>;
 
   return (
-    <div>
+    <div className="container wallet">
       <h1>Carteira de Pontos</h1>
       <p>Pontos aprovados: {points}</p>
     </div>

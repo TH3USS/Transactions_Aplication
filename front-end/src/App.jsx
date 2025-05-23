@@ -5,6 +5,7 @@ import Upload from "./pages/Upload";
 import Report from "./pages/Report";
 import UserExtract from "./pages/Extract";
 import Wallet from "./pages/Wallet";
+import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 
@@ -50,6 +51,8 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/register" element={<Register />} />
 
         <Route path="*" element={<Login />} />
       </Routes>

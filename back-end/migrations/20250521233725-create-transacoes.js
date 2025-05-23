@@ -26,8 +26,8 @@ module.exports = {
         type: Sequelize.FLOAT,
       },
       status: {
-        type: Sequelize.ENUM('Approved', 'disapproved', 'Under validation'),
-        defaultValue: 'Under validation',
+        type: Sequelize.ENUM('Aprovado', 'Reprovado', 'Em avaliação'),
+        defaultValue: 'Em avaliação',
       },
       createdAt: {
         allowNull: false,

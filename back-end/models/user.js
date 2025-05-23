@@ -1,5 +1,3 @@
-// modelo da tabela de usuários
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     name: {
