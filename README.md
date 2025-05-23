@@ -1,4 +1,4 @@
-📊 Sistema de Upload e Gerenciamento de Transações
+# 📊 Sistema de Upload e Gerenciamento de Transações
 
 Esse projeto consiste em um sistema para upload e processamento de planilhas Excel contendo transações, com backend em Node.js (Express + Sequelize) e frontend em React.
 
