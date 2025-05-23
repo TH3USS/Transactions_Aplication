@@ -53,7 +53,7 @@ O frontend foi desenvolvido em React, consumindo as APIs do backend para exibir 
 
 Antes de começar, é necessário ter instalado:  
 ✅ **Node.js + npm** → [Download Node.js](https://nodejs.org/)  
-✅ **Banco de dados relacional** (ex: MySQL, PostgreSQL ou SQL Server)  
+✅ **Banco de dados relacional** (MySQL)  
 ✅ **Git** → [Download Git](https://git-scm.com/downloads)
 
 ---
@@ -63,7 +63,7 @@ Antes de começar, é necessário ter instalado:
 No terminal execute:
 
 ```sh
-git clone https://github.com/seuusuario/seuprojeto.git
+git clone https://github.com/TH3USS/Transactions_Aplication.git
 ```
 
 ---
@@ -80,11 +80,12 @@ No terminal, dentro da pasta do backend execute:
 
 ```sh
 npm install
-npx sequelize db:migrate
-npm start
+node createDb.js
+npx sequelize-cli db:migrate
+npm run dev
 ```
 
-Isso instala dependências, aplica as migrações e inicia o servidor.
+Isso instala dependências, cria o banco de dados, aplica as migrações e inicia o servidor.
 
 ---
 
@@ -101,20 +102,24 @@ Isso instala dependências e inicia o ambiente React.
 
 ---
 
-Se **tudo estiver rodando e acessível sem erros**, seu projeto está pronto! 🚀🎉
-
+Se **tudo estiver rodando e acessível sem erros**, seu projeto está pronto! 🚀🎉  
+E pode ser acessado pelo navegador na porta indicada no terminar seguido por `/login`, como no exemplo abaixo: 
+```sh
+http://localhost:5173/login
+```
 ---
 
 # **🔥 Resumo dos Comandos**
 
 ```sh
 # Clonar o projeto
-git clone https://github.com/seuusuario/seuprojeto.git
+git clone https://github.com/TH3USS/Transactions_Aplication.git
 
 # Rodar Backend
 npm install
-npx sequelize db:migrate
-npm start
+node createDb.js
+npx sequelize-cli db:migrate
+npm run dev
 
 # Rodar Frontend
 npm install
@@ -147,18 +152,17 @@ Backend RESTful com Node.js e Express para roteamento e Sequelize para ORM, faci
 ✅ **Express** → Framework para criação da API  
 ✅ **Sequelize** → ORM para banco relacional  
 ✅ **Multer** → Upload de arquivos  
+✅ **JWT** → Criação de token para validação de usuário
+✅ **bcryptjs** → Para criptografia da senha
+✅ **xlsx** → Leitura de planilhas
 
 ---
 
 ## **3️⃣ Banco de Dados Relacional**
 
-Banco para armazenar usuários e transações.
+Banco utilizado para armazenar usuários e transações.
 
-### 🔹 Exemplos compatíveis
-
-✅ **MySQL**  
-✅ **PostgreSQL**  
-✅ **SQL Server**  
+✅ **MySQL**
 
 ---
 
@@ -166,7 +170,7 @@ Banco para armazenar usuários e transações.
 
 ✅ **Git & GitHub** → Controle de versão  
 ✅ **Visual Studio Code** → IDE para desenvolvimento  
-✅ **Postman** → Testes de API  
+✅ **Insomnia** → Testes de API  
 
 ---
 
