@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+const db = require('../models');
+const User = db.user;
+const Transaction = db.Transaction;
 require('dotenv').config();
 
 const register = async (req, res) => {
@@ -12,11 +14,22 @@ const register = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await User.create({ name, cpf, email, password: hashedPassword, role });
 
+  await Transaction.update(
+  { userId: user.id },
+  {
+    where: {
+      cpf,
+      userId: null
+    }
+  }
+);
+
+
   res.status(201).json({ message: 'User registered successfully' });
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { cpf, password } = req.body;
   const user = await User.findOne({ where: { cpf } });
 
   if (!user) return res.status(400).json({ error: 'Invalid credentials' });
@@ -28,7 +41,12 @@ const login = async (req, res) => {
     expiresIn: '1d',
   });
 
-  res.json({ token });
+  res.json({ 
+    token,
+  user: {
+    cpf: user.cpf,
+    role: user.role
+  } });
 };
 
 module.exports = { register, login };

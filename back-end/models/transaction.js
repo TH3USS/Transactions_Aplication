@@ -1,6 +1,5 @@
-// // modelo da tabela de transações
-// const Sequelize = require('sequelize');
-// const database = require('../config/db');
+// modelo da tabela de transações
+const Sequelize = require('sequelize');
 
 // const Transaction = database.define('Transaction', {
 //   cpf: Sequelize.STRING,
@@ -51,7 +50,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  Transaction.belongsTo(User);
+Transaction.associate = (models) => {
+  Transaction.belongsTo(models.user, {
+    foreignKey: 'userId',
+    as: 'user',
+  });
+};
+
 
   return Transaction;
 };

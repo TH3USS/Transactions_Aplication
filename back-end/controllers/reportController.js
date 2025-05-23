@@ -1,6 +1,6 @@
 const db = require('../models');
 const { Op } = require('sequelize');
-const Transaction = db.transaction;
+const Transaction = db.Transaction;
 
 const getAdminReport = async (req, res) => {
   try {
@@ -17,6 +17,7 @@ const getAdminReport = async (req, res) => {
     const transactions = await Transaction.findAll({ where });
     res.json(transactions);
   } catch (error) {
+    console.error('Erro ao buscar relatório:', error);
     res.status(500).json({ error: 'Erro ao buscar relatório' });
   }
 };
@@ -34,6 +35,7 @@ const getUserExtract = async (req, res) => {
     const transactions = await Transaction.findAll({ where });
     res.json(transactions);
   } catch (error) {
+    console.error('Erro ao buscar extrato:', error);
     res.status(500).json({ error: 'Erro ao buscar extrato' });
   }
 };
@@ -45,12 +47,13 @@ const getUserWallet = async (req, res) => {
     const totalPoints = await Transaction.sum('points', {
       where: {
         userId,
-        status: 'Aprovado'
+        status: 'Approved'
       }
     });
 
-    res.json({ saldo: totalPoints || 0 });
+    res.json({ points: totalPoints || 0 });
   } catch (error) {
+    console.error('Erro ao calcular carteira:', error);
     res.status(500).json({ error: 'Erro ao calcular carteira' });
   }
 };

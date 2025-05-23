@@ -1,22 +1,32 @@
 // modelo da tabela de usuários
-const Sequelize = require('sequelize');
-const database = require('../config/db');
 
-const User = database.define('User', {
-    name: Sequelize.STRING,
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('user', {
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     cpf: {
-        type: Sequelize.STRING,
-        unique: true
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     },
-    email: {
-        type: Sequelize.STRING,
-        unique: true
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    password: Sequelize.STRING,
     role: {
-        type: Sequelize.ENUM('admin', 'user'),
-        defaultValue: 'user',
-    },
-});
+      type: DataTypes.ENUM('admin', 'user'),
+      allowNull: false
+    }
+  });
 
-module.exports = User;
+  User.associate = (models) => {
+  User.hasMany(models.Transaction, {
+    foreignKey: 'userId',
+    as: 'transactions',
+  });
+};
+
+return User;
+};

@@ -1,5 +1,6 @@
 const XLSX = require('xlsx');
 const db = require('../models');
+const User = db.user;
 const Transaction = db.Transaction;
 
 
@@ -12,7 +13,7 @@ const uploadPlanilha = async (req, res) => {
     const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
     for (const row of rows) {
-      const user = await User.findOne({ where: { cpf: String(row['CPF']) } });
+      const user = await User.findOne({ where: { cpf: String(row['cpf']) } });
       
     const transactions = rows.map(row => ({
       cpf: String(row['cpf']),
@@ -30,10 +31,13 @@ const uploadPlanilha = async (req, res) => {
 
     await Transaction.bulkCreate(transactions);
     res.status(201).json({ message: 'Transactions saved successfully' });
+  }
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Error processing spreadsheet' });
   }
+  
 };
+
 
 module.exports = { uploadPlanilha };

@@ -26,6 +26,6 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
-router.post('/upload', upload.single('file'), uploadPlanilha);
+router.post('/', upload.single('file'), uploadPlanilha);
 
 module.exports = router;
